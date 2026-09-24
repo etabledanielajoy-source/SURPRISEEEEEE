@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>I Miss You All 💖</title>
+
+<style>
+
+body {
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Comic Sans MS", cursive;
+    background:linear-gradient(45deg,#ff9a9e,#fad0c4,#a1c4fd,#c2e9fb);
+    background-size:400% 400%;
+    animation:bg 8s infinite alternate;
+}
+
+
+@keyframes bg {
+    from {background-position:left;}
+    to {background-position:right;}
+}
+
+
+.box {
+
+    background:white;
+    padding:40px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(0,0,0,.2);
+    animation:pop 1s;
+
+}
+
+
+@keyframes pop {
+
+from{
+transform:scale(0);
+}
+
+to{
+transform:scale(1);
+}
+
+}
+
+
+h1 {
+    color:#ff4d88;
+}
+
+
+button {
+
+border:none;
+padding:15px 30px;
+margin:10px;
+border-radius:50px;
+font-size:20px;
+cursor:pointer;
+
+}
+
+
+#yes {
+
+background:#ff69b4;
+color:white;
+
+}
+
+
+#no {
+
+background:#555;
+color:white;
+position:relative;
+
+}
+
+
+.hidden {
+
+display:none;
+
+}
+
+
+.flower {
+
+font-size:100px;
+animation:flower 2s infinite;
+
+}
+
+
+@keyframes flower {
+
+50%{
+transform:scale(1.2) rotate(10deg);
+}
+
+}
+
+
+.message {
+
+font-size:24px;
+color:#ff4081;
+
+}
+
+
+#error {
+
+color:red;
+font-size:22px;
+
+}
+
+
+
+.confetti {
+
+position:absolute;
+font-size:30px;
+animation:fall 4s linear infinite;
+
+}
+
+
+@keyframes fall {
+
+from{
+transform:translateY(-100px);
+}
+
+to{
+transform:translateY(800px) rotate(360deg);
+}
+
+}
+
+
+#bar {
+
+height:100%;
+width:0%;
+background:#ff69b4;
+transition:2s;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- FIRST PAGE -->
+
+<div class="box" id="main">
+
+<h1>
+⚠️ Important Question ⚠️
+</h1>
+
+<p>
+Someone prepared a surprise for you 👀
+</p>
+
+<h2>
+Do you want to see it? 🌸
+</h2>
+
+
+<button id="yes" onclick="yesClick()">
+YES 💖
+</button>
+
+
+<button id="no" onclick="noClick()">
+NO 😭
+</button>
+
+
+<p id="error"></p>
+
+
+</div>
+
+
+
+
+<!-- LOADING -->
+
+<div class="box hidden" id="loading">
+
+<h1>
+✨ Preparing Surprise ✨
+</h1>
+
+
+<div style="font-size:70px;">
+⏳
+</div>
+
+
+<h2 id="loadText">
+Loading happiness...
+</h2>
+
+
+<div style="
+width:300px;
+height:20px;
+background:#eee;
+border-radius:20px;
+overflow:hidden;
+margin:auto;
+">
+
+
+<div id="bar"></div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- FLOWER SURPRISE -->
+
+<div class="box hidden" id="surprise">
+
+
+<div class="flower">
+
+🌸🌷🌹
+
+</div>
+
+
+<h1>
+
+I MISS YOU ALL 💖
+
+</h1>
+
+
+<p class="message">
+
+I made this little surprise because I miss you guys so much 🥹✨
+
+</p>
+
+
+<p>
+
+Friendship level:
+<br>
+
+██████████ 100% 😂
+
+</p>
+
+
+<button onclick="showTroll()">
+
+Open the real surprise 😈
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<!-- TROLL -->
+
+<div class="box hidden" id="realTroll">
+
+
+<h1>
+
+HAHAHAHA GOT YOU 🤣
+
+</h1>
+
+
+<!-- CHANGE THIS IMAGE -->
+
+<img src="fuckyou.jpg"
+width="300"
+style="border-radius:20px;">
+
+
+<h2>
+
+Love you guys ❤️
+<br>
+but also... 💀😂
+
+</h2>
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+function yesClick(){
+
+
+document.getElementById("main").style.display="none";
+
+
+let loading=document.getElementById("loading");
+
+loading.classList.remove("hidden");
+
+
+setTimeout(()=>{
+
+document.getElementById("bar").style.width="100%";
+
+},100);
+
+
+
+let texts=[
+
+"Loading happiness... 💖",
+
+"Finding flowers... 🌸",
+
+"Adding memories... ✨",
+
+"Downloading friendship.exe 😂",
+
+"Almost ready... 🎁"
+
+];
+
+
+let i=0;
+
+
+let timer=setInterval(()=>{
+
+
+document.getElementById("loadText").innerHTML=texts[i];
+
+
+i++;
+
+
+if(i>=texts.length){
+
+
+clearInterval(timer);
+
+
+setTimeout(()=>{
+
+
+loading.style.display="none";
+
+
+document.getElementById("surprise")
+.classList.remove("hidden");
+
+
+confetti();
+
+
+},1000);
+
+
+}
+
+
+},800);
+
+
+}
+
+
+
+
+
+function noClick(){
+
+
+let no=document.getElementById("no");
+
+
+document.getElementById("error").innerHTML=
+
+"ERROR 404: NO button unavailable 😂";
+
+
+no.style.position="absolute";
+
+
+no.style.left=Math.random()*300+"px";
+
+
+no.style.top=Math.random()*200+"px";
+
+
+}
+
+
+
+
+
+
+function showTroll(){
+
+
+document.getElementById("surprise")
+.style.display="none";
+
+
+document.getElementById("realTroll")
+.classList.remove("hidden");
+
+
+}
+
+
+
+
+
+function confetti(){
+
+
+let emojis=[
+"🎉",
+"🌸",
+"💖",
+"✨",
+"😂",
+"🌈"
+];
+
+
+for(let i=0;i<50;i++){
+
+
+let c=document.createElement("div");
+
+
+c.className="confetti";
+
+
+c.innerHTML=
+emojis[Math.floor(Math.random()*emojis.length)];
+
+
+c.style.left=Math.random()*100+"vw";
+
+
+c.style.animationDuration=
+(2+Math.random()*3)+"s";
+
+
+document.body.appendChild(c);
+
+
+}
+
+
+}
+
+
+</script>
+
+
+
+</body>
+
+</html>
